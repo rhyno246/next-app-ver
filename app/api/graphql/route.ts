@@ -13,12 +13,14 @@ import { NextRequest, NextResponse } from 'next/server';
 const server = new ApolloServer<Context>({
   resolvers,
   typeDefs,
-  introspection: true,
+  introspection: process.env.NODE_ENV !== "production",
   plugins: [
-    ApolloServerPluginLandingPageLocalDefault({
-      embed: true,
-      includeCookies: true,
-    }),
+    ...(process.env.NODE_ENV === "development"
+      ? [
+          (await import("@apollo/server/plugin/landingPage/default")).ApolloServerPluginLandingPageLocalDefault()
+        ]
+      : []
+    ),
   ],
 });
 
