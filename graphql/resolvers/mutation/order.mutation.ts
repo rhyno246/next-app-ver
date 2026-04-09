@@ -1,6 +1,7 @@
 import { OrderStatus } from "@/app/generated/prisma/enums";
 import { prisma } from "@/prisma/db";
 import { CreateOrderInput } from "@/types/type";
+import { sendOrderEmail } from "@/utils/sendOrderEmail";
 
 export const OrderMutation = {
     createOrder: async (_: unknown, args: { 
@@ -81,6 +82,31 @@ export const OrderMutation = {
                 })
             )
         );
+
+        try {
+            await sendOrderEmail({
+                to: args.data.shippingEmail ?? "",
+                code: order.code,
+                shippingName: args.data.shippingName ?? "",
+                shippingAddress: args.data.shippingAddress ?? "",
+                shippingPhone: args.data.shippingPhone ?? "",
+                shippingFee: shippingFee, 
+                total: order.total,
+                items: orderItems.map((item) => {
+                    const product = products.find(p => p.id === item.productId);
+                    return {
+                        title: product?.title ?? "Unknown Product",
+                        quantity: item.quantity,
+                        price: item.price,
+                        sale: item.sale,
+                    };
+                }),
+            });
+        } catch (e) {
+            console.error("Send order email failed:", e);
+        }
+
+
         return order;
     },
     updateOrderStatus: async (_: unknown, args: { id: string; status: string }) => {
