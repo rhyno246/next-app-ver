@@ -1,0 +1,513 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-Bold.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-Italic.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-BoldItalic.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-MediumItalic.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-Light.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-LightItalic.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-SemiBold.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-SemiBoldItalic.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-Regular.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular A";
+  src: url("../fonts/EuclidCircularA-Medium.woff2") format("woff2"),
+    url("../fonts/EuclidCircularA-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* ===== FONTS ===== */
+  --font-euclid-circular-a: "Euclid Circular A", sans-serif;
+
+  /* ===== COLORS ===== */
+  --color-current: currentColor;
+  --color-transparent: transparent;
+  --color-white: #FFFFFF;
+  --color-body: #6C6F93;
+
+  --color-meta: #F7F9FC;
+  --color-meta-2: #495270;
+  --color-meta-3: #606882;
+  --color-meta-4: #8D93A5;
+  --color-meta-5: #BBBEC9;
+
+  --color-dark: #1C274C;
+  --color-dark-2: #495270;
+  --color-dark-3: #606882;
+  --color-dark-4: #8D93A5;
+  --color-dark-5: #BBBEC9;
+
+  --color-gray: #F3F5F6;
+  --color-gray-1: #F9FAFB;
+  --color-gray-2: #F3F4F6;
+  --color-gray-3: #E5E7EB;
+  --color-gray-4: #D1D5DB;
+  --color-gray-5: #9CA3AF;
+  --color-gray-6: #6B7280;
+  --color-gray-7: #374151;
+
+  --color-blue: #3C50E0;
+  --color-blue-dark: #1C3FB7;
+  --color-blue-light: #5475E5;
+  --color-blue-light-2: #8099EC;
+  --color-blue-light-3: #ADBCF2;
+  --color-blue-light-4: #C3CEF6;
+  --color-blue-light-5: #E1E8FF;
+
+  --color-red: #F23030;
+  --color-red-dark: #E10E0E;
+  --color-red-light: #F56060;
+  --color-red-light-2: #F89090;
+  --color-red-light-3: #FBC0C0;
+  --color-red-light-4: #FDD8D8;
+  --color-red-light-5: #FEEBEB;
+  --color-red-light-6: #FEF3F3;
+
+  --color-green: #22AD5C;
+  --color-green-dark: #1A8245;
+  --color-green-light: #2CD673;
+  --color-green-light-2: #57DE8F;
+  --color-green-light-3: #82E6AC;
+  --color-green-light-4: #ACEFC8;
+  --color-green-light-5: #C2F3D6;
+  --color-green-light-6: #DAF8E6;
+
+  --color-yellow: #FBBF24;
+  --color-yellow-dark: #F59E0B;
+  --color-yellow-dark-2: #D97706;
+  --color-yellow-light: #FCD34D;
+  --color-yellow-light-1: #FDE68A;
+  --color-yellow-light-2: #FEF3C7;
+  --color-yellow-light-4: #FFFBEB;
+
+  --color-teal: #02AAA4;
+  --color-teal-dark: #06A09B;
+
+  --color-orange: #F27430;
+  --color-orange-dark: #E1580E;
+
+  /* ===== FONT SIZES ===== */
+  --text-2xs: 10px;
+  --text-2xs--line-height: 17px;
+  --text-heading-1: 60px;
+  --text-heading-1--line-height: 72px;
+  --text-heading-2: 48px;
+  --text-heading-2--line-height: 64px;
+  --text-heading-3: 40px;
+  --text-heading-3--line-height: 48px;
+  --text-heading-4: 30px;
+  --text-heading-4--line-height: 38px;
+  --text-heading-5: 28px;
+  --text-heading-5--line-height: 40px;
+  --text-heading-6: 24px;
+  --text-heading-6--line-height: 30px;
+  --text-custom-xl: 20px;
+  --text-custom-xl--line-height: 24px;
+  --text-custom-lg: 18px;
+  --text-custom-lg--line-height: 24px;
+  --text-custom-sm: 14px;
+  --text-custom-sm--line-height: 22px;
+  --text-custom-xs: 12px;
+  --text-custom-xs--line-height: 20px;
+  --text-custom-2xl: 24px;
+  --text-custom-2xl--line-height: 34px;
+  --text-custom-4xl: 36px;
+  --text-custom-4xl--line-height: 48px;
+  --text-custom-1: 22px;
+  --text-custom-1--line-height: 30px;
+  --text-custom-2: 32px;
+  --text-custom-2--line-height: 38px;
+  --text-custom-3: 35px;
+  --text-custom-3--line-height: 45px;
+
+  /* ===== SPACING ===== */
+  --spacing-4-5: 1.125rem;
+  --spacing-5-5: 1.375rem;
+  --spacing-6-5: 1.625rem;
+  --spacing-7-5: 1.875rem;
+  --spacing-8-5: 2.125rem;
+  --spacing-9-5: 2.375rem;
+  --spacing-10-5: 2.625rem;
+  --spacing-11: 2.75rem;
+  --spacing-11-5: 2.875rem;
+  --spacing-12-5: 3.125rem;
+  --spacing-13: 3.25rem;
+  --spacing-13-5: 3.375rem;
+  --spacing-14: 3.5rem;
+  --spacing-14-5: 3.625rem;
+  --spacing-15: 3.75rem;
+  --spacing-15-5: 3.875rem;
+  --spacing-16: 4rem;
+  --spacing-16-5: 4.125rem;
+  --spacing-17: 4.25rem;
+  --spacing-17-5: 4.375rem;
+  --spacing-18: 4.5rem;
+  --spacing-18-5: 4.625rem;
+  --spacing-19: 4.75rem;
+  --spacing-19-5: 4.875rem;
+  --spacing-21: 5.25rem;
+  --spacing-21-5: 5.375rem;
+  --spacing-22: 5.5rem;
+  --spacing-22-5: 5.625rem;
+  --spacing-24-5: 6.125rem;
+  --spacing-25: 6.25rem;
+  --spacing-25-5: 6.375rem;
+  --spacing-26: 6.5rem;
+  --spacing-27: 6.75rem;
+  --spacing-27-5: 6.875rem;
+  --spacing-29: 7.25rem;
+  --spacing-29-5: 7.375rem;
+  --spacing-30: 7.5rem;
+  --spacing-31: 7.75rem;
+  --spacing-31-5: 7.875rem;
+  --spacing-32-5: 8.125rem;
+  --spacing-33: 8.25rem;
+  --spacing-34: 8.5rem;
+  --spacing-34-5: 8.625rem;
+  --spacing-35: 8.75rem;
+  --spacing-36-5: 9.125rem;
+  --spacing-37: 9.25rem;
+  --spacing-37-5: 9.375rem;
+  --spacing-39: 9.75rem;
+  --spacing-39-5: 9.875rem;
+  --spacing-40: 10rem;
+  --spacing-42-5: 10.625rem;
+  --spacing-45: 11.25rem;
+  --spacing-46: 11.5rem;
+  --spacing-47-5: 11.875rem;
+  --spacing-49: 12.25rem;
+  --spacing-50: 12.5rem;
+  --spacing-51: 12.75rem;
+  --spacing-51-5: 12.875rem;
+  --spacing-52: 13rem;
+  --spacing-52-5: 13.125rem;
+  --spacing-54: 13.5rem;
+  --spacing-54-5: 13.625rem;
+  --spacing-55: 13.75rem;
+  --spacing-55-5: 13.875rem;
+  --spacing-57-5: 14.375rem;
+  --spacing-59: 14.75rem;
+  --spacing-60: 15rem;
+  --spacing-62-5: 15.625rem;
+  --spacing-65: 16.25rem;
+  --spacing-67: 16.75rem;
+  --spacing-67-5: 16.875rem;
+  --spacing-70: 17.5rem;
+  --spacing-72-5: 18.125rem;
+  --spacing-75: 18.75rem;
+  --spacing-90: 22.5rem;
+  --spacing-92-5: 23.125rem;
+  --spacing-94: 23.5rem;
+  --spacing-100: 25rem;
+  --spacing-110: 27.5rem;
+  --spacing-115: 28.75rem;
+  --spacing-122-5: 30.625rem;
+  --spacing-125: 31.25rem;
+  --spacing-127-5: 31.875rem;
+  --spacing-132-5: 33.125rem;
+  --spacing-142-5: 35.625rem;
+  --spacing-150: 37.5rem;
+  --spacing-166-5: 41.625rem;
+  --spacing-171-5: 42.875rem;
+  --spacing-180: 45rem;
+  --spacing-187-5: 46.875rem;
+  --spacing-192-5: 48.125rem;
+  --spacing-203: 50.75rem;
+  --spacing-230: 57.5rem;
+
+  /* ===== MAX WIDTH ===== */
+  --max-width-30: 7.5rem;
+  --max-width-40: 10rem;
+  --max-width-50: 12.5rem;
+
+  /* ===== Z-INDEX ===== */
+  --z-index-1: 1;
+  --z-index-99: 99;
+  --z-index-999: 999;
+  --z-index-9999: 9999;
+  --z-index-99999: 99999;
+  --z-index-999999: 999999;
+
+  /* ===== SHADOWS ===== */
+  --shadow-1: 0px 1px 2px 0px rgba(166, 175, 195, 0.25);
+  --shadow-2: 0px 6px 24px 0px rgba(235, 238, 251, 0.40), 0px 2px 4px 0px rgba(148, 163, 184, 0.05);
+  --shadow-3: 0px 2px 16px 0px rgba(13, 10, 44, 0.12);
+  --shadow-testimonial: 0px 0px 4px 0px rgba(148, 163, 184, 0.10), 0px 6px 12px 0px rgba(224, 227, 238, 0.45);
+  --shadow-breadcrumb: 0px 1px 0px 0px #E5E7EB, 0px -1px 0px 0px #E5E7EB;
+  --shadow-range: 0px 0px 1px 0px rgba(33, 37, 41, 0.08), 0px 2px 2px 0px rgba(33, 37, 41, 0.06);
+  --shadow-filter: 0px 1px 0px 0px #E5E7EB;
+  --shadow-list: 1px 0px 0px 0px #E5E7EB;
+  --shadow-input: inset 0 0 0 2px #3C50E0;
+
+  /* ===== SCREENS ===== */
+  --breakpoint-xsm: 375px;
+  --breakpoint-lsm: 425px;
+  --breakpoint-3xl: 2000px;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-euclid-circular-a font-normal text-base text-dark-3 relative z-1;
+  }
+}
+
+@layer components {
+  .dropdown {
+    @apply flex-col gap-0 min-w-max xl:w-[193px] mt-2 lg:mt-0 bg-white shadow-2 ease-in duration-200 py-2.5 rounded-md border border-gray-3 left-0 hidden
+    xl:translate-y-10 xl:opacity-0 xl:invisible xl:absolute xl:flex
+    xl:group-hover:opacity-100 xl:group-hover:visible;
+  }
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* third-party libraries CSS */
+
+/* clears the 'X' from Internet Explorer */
+input[type='search']::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type='search']::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/* clears the 'X' from Chrome */
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
+}
+.custom-search {
+  -webkit-border-radius: 0;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
+
+/* The container must be positioned relative: */
+.custom-select select {
+  display: none;
+}
+
+.select-selected {
+  @apply bg-gray-1 rounded-l-[5px] border border-gray-3 !border-r-0 cursor-pointer text-dark text-custom-sm py-[11px] pl-3.5 pr-8 relative;
+}
+
+.select-selected:after {
+  content: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.00005 5.54998C4.88755 5.54998 4.7938 5.51248 4.70005 5.43748L0.387549 1.19998C0.218799 1.03123 0.218799 0.768726 0.387549 0.599976C0.556299 0.431226 0.818799 0.431226 0.987549 0.599976L5.00005 4.51873L9.01255 0.562476C9.1813 0.393726 9.4438 0.393726 9.61255 0.562476C9.7813 0.731226 9.7813 0.993726 9.61255 1.16248L5.30005 5.39998C5.2063 5.49373 5.11255 5.54998 5.00005 5.54998Z' fill='%231C274C'/%3E%3C/svg%3E%0A");
+  @apply absolute top-1/2 -translate-y-1/2 right-4.5 ease-out duration-200;
+}
+
+.select-selected.select-arrow-active:after {
+  @apply rotate-180 mt-0.5;
+}
+
+.select-items div {
+  @apply cursor-pointer text-dark-3 text-custom-sm py-[7px] px-4.5;
+}
+
+.select-items {
+  @apply absolute top-full left-0 right-0 z-99 shadow-2 border border-gray-3 bg-white rounded-md py-2.5 mt-1.5;
+}
+
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  @apply bg-gray-1 text-dark;
+}
+
+.custom-select-2 .select-selected {
+  @apply bg-white rounded-md !border-r text-dark-4 py-1.5 pl-3 pr-9;
+}
+.custom-select-2 .select-selected:after {
+  content: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.41444 1.03563L1.41443 1.03565L1.41725 1.0384L6.76725 6.2634L7.00126 6.49194L7.23418 6.26229L12.5842 0.987287L12.5842 0.987293L12.5858 0.985629C12.6807 0.890804 12.8196 0.890804 12.9144 0.985629C13.009 1.08018 13.0093 1.21861 12.9153 1.31341C12.915 1.31368 12.9147 1.31395 12.9144 1.31422L7.16652 6.96217L7.16651 6.96216L7.16444 6.96422C7.06814 7.06053 7.02327 7.06659 7.00015 7.06659C6.94122 7.06659 6.89018 7.05216 6.8204 6.99902L1.08502 1.36339C0.991024 1.26859 0.991301 1.13018 1.08585 1.03563C1.18067 0.940804 1.31962 0.940804 1.41444 1.03563Z' fill='%238D93A5' stroke='%238D93A5' stroke-width='0.666667'/%3E%3C/svg%3E%0A");
+  @apply right-3.5;
+}
+
+.custom-select-common .select-selected {
+  @apply bg-gray-1 rounded-md !border-r text-dark-4 py-3 pl-5 pr-9 duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20;
+}
+.custom-select-common .select-selected:after {
+  content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.41469 5.03569L2.41467 5.03571L2.41749 5.03846L7.76749 10.2635L8.0015 10.492L8.23442 10.2623L13.5844 4.98735L13.5844 4.98735L13.5861 4.98569C13.6809 4.89086 13.8199 4.89087 13.9147 4.98569C14.0092 5.08024 14.0095 5.21864 13.9155 5.31345C13.9152 5.31373 13.915 5.31401 13.9147 5.31429L8.16676 10.9622L8.16676 10.9622L8.16469 10.9643C8.06838 11.0606 8.02352 11.0667 8.00039 11.0667C7.94147 11.0667 7.89042 11.0522 7.82064 10.9991L2.08526 5.36345C1.99127 5.26865 1.99154 5.13024 2.08609 5.03569C2.18092 4.94086 2.31986 4.94086 2.41469 5.03569Z' fill='%238D93A5' stroke='%238D93A5' stroke-width='0.666667'/%3E%3C/svg%3E%0A");
+  @apply right-4 block mt-1;
+}
+.custom-select-common .select-selected.select-arrow-active:after {
+  @apply -mt-0.5;
+}
+
+.hero-carousel .swiper-pagination-bullet {
+  @apply h-1 w-4 rounded-[11px] bg-[#DDD];
+}
+
+.hero-carousel .swiper-pagination-bullet-active {
+  @apply w-5.5 bg-blue;
+}
+
+.hero-carousel .swiper-pagination {
+  @apply xl:!bottom-5;
+}
+
+.common-carousel .swiper-button-next:after,
+.common-carousel .swiper-button-prev:after {
+  @apply hidden;
+}
+
+.common-carousel .swiper-button-next,
+.common-carousel .swiper-button-prev {
+  @apply !static h-9 w-9 rounded-lg bg-white text-dark border border-gray-3 m-0 ease-out duration-200 hover:bg-blue hover:text-white hover:border-blue;
+}
+
+.common-carousel .swiper-button-next svg,
+.common-carousel .swiper-button-prev svg {
+  @apply w-auto h-auto;
+}
+
+.img-zoom-container img {
+  transition: 0.8s;
+}
+.img-zoom-container img:hover {
+  transform: scale(2) rotate(0deg);
+  transition: 0.8s;
+}
+
+.priceSlide .noUi-target {
+  @apply mb-5 mt-9 border-none bg-transparent shadow-none;
+}
+.priceSlide .noUi-connects {
+  @apply h-1 rounded-full bg-gray-3;
+}
+.priceSlide .noUi-connect {
+  @apply h-1 rounded-full bg-blue;
+}
+.priceSlide .noUi-horizontal .noUi-handle {
+  @apply -top-3 h-7 w-7 rounded-full border border-gray-4 bg-white shadow-range before:block before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-4 before:h-4 before:rounded-full before:bg-blue;
+}
+.priceSlide .noUi-tooltip {
+  @apply border-none p-0 bg-transparent text-custom-sm text-dark-4;
+}
+.noUi-horizontal .noUi-handle:after,
+.noUi-horizontal .noUi-handle:before {
+  @apply hidden;
+}
+
+.range-slider {
+ @apply w-full !h-[4px] rounded-md bg-blue relative mb-3;
+}
+
+.slider .thumb {
+  @apply w-6 h-6 bg-blue-dark rounded-full absolute -top-2 border-[5px] border-blue-light-4;
+}
+
+.range-slider__thumb {
+  @apply !bg-white border-[1px] border-blue-light-4 flex justify-center items-center !w-7 !h-7;
+}
+
+.range-slider__thumb::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  display: block;
+  border-radius: 100%;
+  position: absolute;
+  @apply bg-blue;
+}
+
+.range-slider__range {
+  @apply !bg-blue;
+}

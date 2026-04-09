@@ -1,0 +1,258 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id String @id @default(uuid())
+  code Int @unique @default(autoincrement())
+  slug String @unique
+  title String
+  image String?
+  description String?
+  stock Int? @default(0)
+  price Int? @default(0)
+  rating Int? @default(0)
+  sale Int? @default(0)
+  soldCount Int @default(0)
+  isActive Boolean @default(true)
+  isHot Boolean @default(false)
+  publicId  String?
+  comments Comment[]
+  orderItems  OrderItem[]
+  wishlists Wishlist[]
+  categories  ProductCategory[] // 1 product có nhiều category
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  images    ProductImage[]
+  author   Author  @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+  authorId String
+}
+
+model Role {
+  id        String   @id @default(uuid())
+  name      String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authors   Author[]
+}
+
+model Author {
+  id String @id @default(uuid())
+  firstName String?
+  lastName String?
+  email String? @unique
+  password String?
+  phone String?
+  image String?
+  publicId  String?
+  isActive Boolean? @default(true)
+  provider String @default("local")
+  resetToken String?
+  resetTokenExpiry DateTime?
+
+  roleId     String 
+  role       Role     @relation(fields: [roleId], references: [id])
+
+  products   Product[]
+  comments   Comment[]
+  wishlists  Wishlist[]
+  orders     Order[]
+  category   Category[]
+  posts      Post[]
+  slides     Slide[]
+  siteconfig SiteConfig[]
+  shippingAddress ShippingAddress?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  rating    Int      
+  productId String
+  email     String
+  name      String
+  authorId  String?
+  isActive  Boolean @default(true)
+  isHot     Boolean @default(false) 
+
+  product   Product  @relation(fields: [productId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+  author    Author?   @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+
+model Wishlist {
+  id        String   @id @default(uuid())
+  authorId  String
+  productId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author    Author   @relation(fields: [authorId], references: [id], onDelete: Cascade , onUpdate: Cascade)
+  product   Product  @relation(fields: [productId], references: [id] , onDelete: Cascade, onUpdate: Cascade)
+
+  @@unique([authorId, productId]) // tránh trùng 1 sản phẩm 2 lần
+}
+
+model Order {
+  id        String       @id @default(uuid())
+  code      Int @unique @default(autoincrement())
+  authorId  String?
+  total     Int
+  subtotal  Int @default(0)
+  discount  Int @default(0)
+  shippingFee Int @default(0)  
+     
+  status    OrderStatus  @default(PENDING) 
+  paymentMethod   String      @default("cod") 
+  paymentStatus   String      @default("unpaid")
+  note            String?
+
+  shippingName    String?
+  shippingPhone   String?
+  shippingEmail   String?
+  shippingAddress String?
+  
+  createdAt DateTime     @default(now())
+  updatedAt DateTime @updatedAt
+  items     OrderItem[]
+
+  author    Author?      @relation(fields: [authorId], references: [id], onDelete: Cascade , onUpdate: Cascade)
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPING
+  SHIPPED
+  CANCELLED
+  REFUNDED
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Int
+  sale      Int        
+  total     Int
+  order    Order    @relation(fields: [orderId], references: [id], onDelete: Cascade , onUpdate: Cascade)
+  product  Product  @relation(fields: [productId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+}
+
+
+model Category {
+  id          String     @id @default(uuid())
+  name        String
+  slug        String @unique
+  description String?
+  image       String?
+
+  publicId    String?
+  authorId    String
+  author      Author     @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+
+  products    ProductCategory[]  // 1 category có nhiều product
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+
+model Post {
+  id        String    @id @default(uuid())
+  slug      String    @unique
+  title     String
+  content   String?
+  image     String?
+  publicId  String?
+  authorId  String
+  author    Author    @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Slide {
+  id        String    @id @default(uuid())
+  title     String
+  image     String?
+  link      String?
+  isActive  Boolean   @default(true)
+  publicId  String?
+  authorId  String
+  author    Author    @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+
+model SiteConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String?
+  publicId  String?
+
+  authorId  String
+  author    Author    @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model ProductCategory {
+  productId  String
+  categoryId String
+
+  product    Product   @relation(fields: [productId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+  category   Category  @relation(fields: [categoryId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+
+  @@id([productId, categoryId]) // PRIMARY COMPOSITE
+}
+
+model ShippingAddress {
+  id        String   @id @default(uuid())
+  authorId  String   @unique  
+  name      String
+  email     String
+  phone     String
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    Author    @relation(fields: [authorId], references: [id] , onDelete: Cascade , onUpdate: Cascade)
+}
+
+model ProductImage {
+  id        String   @id @default(uuid())
+  url       String
+  publicId  String?
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model BrowserVisit {
+  id        String   @id @default(cuid())
+  browser   String   @unique
+  count     Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+

@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Author" ALTER COLUMN "firstName" DROP NOT NULL,
+ALTER COLUMN "lastName" DROP NOT NULL,
+ALTER COLUMN "isActive" DROP NOT NULL;
