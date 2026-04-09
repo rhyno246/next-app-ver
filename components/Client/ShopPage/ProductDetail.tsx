@@ -4,7 +4,12 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import CustomInput from "@/components/Common/CustomInput";
 import LoadingComponent from "@/components/Common/LoadingComponent";
 import { CREATE_COMMENT } from "@/graphql/mutations";
-import { GET_COMMENTS, GET_ME, GET_PRODUCT_DETAIL } from "@/graphql/queries";
+import {
+  GET_ALL_COMMENTS,
+  GET_COMMENTS,
+  GET_ME,
+  GET_PRODUCT_DETAIL,
+} from "@/graphql/queries";
 import { commentSchema, CommentSchema } from "@/schema/commentSchema";
 import { useCartStore } from "@/store/cart-store";
 import { CommentsResponse, MeResponse, Products } from "@/types/type";
@@ -92,6 +97,9 @@ const ProductDetail = ({ slug }: Props) => {
     {
       query: GET_PRODUCT_DETAIL,
       variables: { slug: slug },
+    },
+    {
+      query: GET_ALL_COMMENTS,
     },
   ];
 

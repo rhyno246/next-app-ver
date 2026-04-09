@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -11,7 +12,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { GET_TOP_ORDER_USERS } from "@/graphql/queries";
 import { useQuery } from "@apollo/client/react";
-import Image from "next/image";
 
 interface TopOrderUser {
   orderCount: number;
@@ -54,12 +54,13 @@ export default function ListItem() {
             className="flex-row items-center justify-between gap-4 p-4"
           >
             <div className="w-12 h-12 rounded-sm relative overflow-hidden">
-              <Image
-                src={item.author.image}
-                alt={item.author.email}
-                fill
-                className="object-cover"
-              />
+              <Avatar className="w-10 h-10 flex-shrink-0">
+                <AvatarImage src={item.author.image} />
+                <AvatarFallback className="text-xs">
+                  {item.author.firstName?.[0]}
+                  {item.author.lastName?.[0]}
+                </AvatarFallback>
+              </Avatar>
             </div>
             <CardContent className="flex-1 p-0">
               <CardTitle className="text-sm font-medium">

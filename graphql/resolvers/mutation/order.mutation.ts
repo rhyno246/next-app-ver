@@ -1,7 +1,7 @@
 import { OrderStatus } from "@/app/generated/prisma/enums";
 import { prisma } from "@/prisma/db";
 import { CreateOrderInput } from "@/types/type";
-import { sendOrderEmail } from "@/utils/sendOrderEmail";
+import { sendOrderEmail, sendOrderStatusEmail } from "@/utils/sendOrderEmail";
 
 export const OrderMutation = {
     createOrder: async (_: unknown, args: { 
@@ -110,14 +110,29 @@ export const OrderMutation = {
         return order;
     },
     updateOrderStatus: async (_: unknown, args: { id: string; status: string }) => {
-        return prisma.order.update({
+        const order = await prisma.order.update({
             where: { id: args.id },
-            data: { status: args.status as OrderStatus  },
+            data: { status: args.status as OrderStatus },
             include: {
                 items: { include: { product: true } },
                 author: true,
             }
         });
+
+        try {
+            if (order.shippingEmail) {
+                await sendOrderStatusEmail({
+                    to: order.shippingEmail,
+                    code: order.code,
+                    status: args.status,
+                    shippingName: order.shippingName ?? "Customer",
+                });
+            }
+        } catch (e) {
+            console.error("Send status email failed:", e);
+        }
+
+        return order;
     },
     cancelOrder: async (_: unknown, args: { id: string; authorId: string }) => {
         const order = await prisma.order.findUnique({
