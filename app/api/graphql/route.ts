@@ -1,6 +1,5 @@
 
 import { ApolloServer, HeaderMap } from '@apollo/server';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { resolvers } from '../../../graphql/resolvers';
 import { typeDefs } from '../../../graphql/schema';
 import { createContext } from '@/graphql/context';
