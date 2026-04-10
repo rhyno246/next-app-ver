@@ -8,7 +8,7 @@ export const PostsQuery = {
         search?: string;
     }) => {
         const where = args.search ? {
-            name: { contains: args.search, mode: "insensitive" as const }
+            title: { contains: args.search, mode: "insensitive" as const }
         } : {};
         return await paginate({
             model: prisma.post,

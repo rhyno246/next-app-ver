@@ -21,7 +21,7 @@ export const CommentsQuery = {
         search?: string;
     }) => {
         const where = args.search ? {
-            content: { contains: args.search, mode: "insensitive" as const }
+            email: { contains: args.search, mode: "insensitive" as const }
         } : {};
 
         return await paginate({

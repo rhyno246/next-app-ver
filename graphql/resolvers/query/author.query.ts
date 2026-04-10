@@ -32,7 +32,7 @@ export const AuthorQuery = {
     search?: string;
   }) => {
     const where = args.search ? {
-        name: { contains: args.search, mode: "insensitive" as const }
+        email: { contains: args.search, mode: "insensitive" as const }
     } : {};
 
     return await paginate({
